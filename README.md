@@ -1,11 +1,13 @@
 # No ad youtube
-<p style="text-align:center">
-<img width="50%" src="doc/demo.gif"/>
+<p align="center">
+<img width="75%" src="doc/demo.gif"/>
 </p>
 This project is a proof of concept, it explores the use of youtube's embed architecture to circumvent ads
 
 ## Quickstart
 ```
+git clone https://github.com/BarakBinyamin/addless-youtube.git
+cd addless-youtube
 npm install
 node .
 ```
