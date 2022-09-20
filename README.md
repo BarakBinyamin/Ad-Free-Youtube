@@ -21,6 +21,6 @@ Forward this service to the web using ngrok, and avoid being canceled by youtube
 3. [Paste the ssh key to ngrok](https://dashboard.ngrok.com/tunnels/ssh-keys)
 4. Forward this service to the web
 ```bash
-ssh -i id_rsa -R 443:localhost:<PORT> tunnel.us.ngrok.com http
+ssh -i id_rsa -R 443:localhost:8000 tunnel.us.ngrok.com http
 ```
 The output should be two routes, one with ssl enabled
