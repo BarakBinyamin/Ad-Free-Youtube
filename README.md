@@ -17,7 +17,7 @@ Forward this service to the web using ngrok, and avoid being canceled by youtube
 1. [Make an ngrok account](https://ngrok.com/)
 2. Create an ssh key with the command `ssh-keygen`
    1. Follow the prompts, remember the passphrase 
-   2. Copy the public key (cat /path/to/key.pub)
+   2. Copy the public key (cat /path/to/id_rsa.pub)
 3. [Paste the ssh key to ngrok](https://dashboard.ngrok.com/tunnels/ssh-keys)
 4. Forward this service to the web
 ```bash
