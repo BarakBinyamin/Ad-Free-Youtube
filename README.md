@@ -19,7 +19,7 @@ Forward this service to the web using ngrok, and avoid being canceled by youtube
    1. Follow the prompts, remember the passphrase 
    2. Copy the public key (cat /path/to/key.pub)
 3. [Paste the ssh key to ngrok](https://dashboard.ngrok.com/tunnels/ssh-keys)
-4. Forward the webite to the web
+4. Forward this service to the web
 ```bash
 ssh -i id_rsa -R 443:localhost:<PORT> tunnel.us.ngrok.com http
 ```
