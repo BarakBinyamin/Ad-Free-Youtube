@@ -101,7 +101,7 @@ async function searchYoutube(query){
     const text       = HTMLobject.html()
     /* Get video tags    */
     const vregex= /watch\?v=[0-9a-zA-Z-]{11}/g
-    const vsrcs = text.match(vregex).splice(0,5)
+    const vsrcs = [...new Set(text.match(vregex))].splice(0,5)
     const vtags = vsrcs.map(src => src.split("=")[1])
     /* Get playlist tags */
     const pregex= /list=[0-9a-zA-Z-]*/g
