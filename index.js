@@ -1,10 +1,16 @@
-const child_process = require("child_process")
+const { spawnSync } = require('child_process')
+const { program }   = require('commander')
 const cheerio       = require("cheerio")
 const express       = require("express")
 const http          = require("http")
 const fs            = require("fs")
 
-const PORT          = 8001
+program
+    .requiredOption('-p, --port <char>','Port to run on')
+program.parse();
+const options = program.opts()
+
+const PORT          = options['port']
 const app           = express()
 const jsonTools     = express.json()
 app.use(jsonTools)
@@ -16,6 +22,9 @@ const view = `
                 display:grid; 
                 justify-content: center;
                 background: #161b22;
+            }
+            iframe{
+                margin:5px;
             }
             input{
                 width: 200px;
@@ -33,6 +42,7 @@ const view = `
                 width: 100%;
                 justify-content: center;
                 grid-template-columns: auto auto;
+                grid-gap: 5px;
                 margin-top: 10px;
             }
             h1{
@@ -53,8 +63,8 @@ const view = `
             <div id="videos"></div>
         </h2><h2>playlists</h2><h2>
             <div id="playlists"></div>
+
         <script>
-        
         async function searchYoutube(){
             const value  = document.getElementById("input").value
             const res    = await fetch("/api/search?item="+value)
@@ -63,10 +73,8 @@ const view = `
             document.getElementById("title").innerHTML     = value
             document.getElementById("input").value         = ''
             
-            document.getElementById("videos").innerHTML    = String(result['listofembeddivs']['videos'])
-            document.getElementById("playlists").innerHTML = String(result['listofembeddivs']['playlists'])
-            
-
+            document.getElementById("videos").innerHTML    = String(result['listofembeddivs']['videos']).replaceAll(',','')
+            document.getElementById("playlists").innerHTML = String(result['listofembeddivs']['playlists']).replaceAll(',','')
         }
         
         input.addEventListener("keypress", function(event) {
@@ -78,16 +86,44 @@ const view = `
         </script>
     `
 
-function searchYoutube(query){
-    const url = "https://www.youtube.com/results?search_query=" + query.replace(/ /g,"+")
-    const videos    = []
-    const playlists = []
+async function searchYoutube(query){
+    const url        = "https://www.youtube.com/results?search_query=" + query.replace(/ /g,"+")
+    const child      = spawnSync(`curl`, [url])
+    const html       = child.stdout
+    const HTMLobject = cheerio.load(html)
+    const text       = HTMLobject.html()
+    /* Get video tags    */
+    const vregex= /watch\?v=[0-9a-zA-Z-]{11}/g
+    const vsrcs = text.match(vregex).splice(0,5)
+    const vtags = vsrcs.map(src => src.split("=")[1])
+    /* Get playlist tags */
+    const pregex= /list=[0-9a-zA-Z-]*/g
+    const psrcs = [...new Set(text.match(pregex))].splice(0,5)
+    const ptags = psrcs.map(src => src.split("=")[1])
+
+    const videos    = vtags.map(tag=>`
+    <iframe 
+        src="https://www.youtube.com/embed/${tag}"
+        width="300" height="200"
+        title="YouTube video player" frameborder="0" allow="accelerometer;
+        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    `)
+    const playlists = ptags.map(tag=>`
+    <iframe 
+        src="https://www.youtube.com/embed/videoseries?list=${tag}" 
+        width="300" height="200"
+        title="YouTube video player" frameborder="0" allow="accelerometer; 
+        autoplay;clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    `)
+
     return {"listofembeddivs":{"videos":videos,"playlists":playlists}}
 }
 
 app.get("/api/search", async (req,res)=>{
     const query = req.query.item
-    res.send(searchYoutube(query))
+    res.send(await searchYoutube(query))
 })
 
 app.get("/*",(req,res)=>{

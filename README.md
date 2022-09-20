@@ -9,11 +9,11 @@ This project is a proof of concept, it explores the use of youtube's embed archi
 git clone https://github.com/BarakBinyamin/addless-youtube.git
 cd addless-youtube
 npm install
-node .
+node index.js --port=8000
 ```
 
 ## Also Ngrok
-Forward this service to the web using ngrok, and avoid being canceled by youtube 
+Forward this service to the web using ngrok, and avoid being canceled by youtube for not having a domain name
 1. [Make an ngrok account](https://ngrok.com/)
 2. Create an ssh key with the command `ssh-keygen`
    1. Follow the prompts, remember the passphrase 
