@@ -18,6 +18,13 @@ app.use(jsonTools)
 const view = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <style>
+            html{
+                -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+                /* Nice Font */
+                font-family: Avenir, Helvetica, Arial, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
             body{
                 display:grid; 
                 justify-content: center;
