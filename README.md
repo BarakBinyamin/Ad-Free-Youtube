@@ -2,7 +2,7 @@
 <p align="center">
 <img width="75%" src="doc/demo.gif"/>
 </p>
-This project is a proof of concept, it explores the use of youtube's embed architecture to circumvent ads
+This project is a proof of concept that explores the use of youtube's embed architecture to circumvent ads
 
 ## Quickstart
 ```
