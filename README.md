@@ -1,4 +1,4 @@
-# Ad free Youtube
+# Ad Free Youtube
 <p align="center">
 <img width="75%" src="doc/demo.gif"/>
 </p>
