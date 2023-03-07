@@ -13,7 +13,7 @@ node index.js --port=8000
 ```
 
 ## Also Ngrok
-Forward this service to the web using ngrok, and avoid being canceled by youtube for not having a domain name
+Forward this service to the web using ngrok, and avoid CORS policy blocks
 1. [Make an ngrok account](https://ngrok.com/)
 2. Create an ssh key with the command `ssh-keygen`
    1. Follow the prompts, remember the passphrase 
