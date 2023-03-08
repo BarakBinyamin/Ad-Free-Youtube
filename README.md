@@ -1,8 +1,8 @@
 # Ad Free Youtube
+This project explores the use of youtube's embed architecture to circumvent ads
 <p align="center">
 <img width="75%" src="demo.gif"/>
 </p>
-This project explores the use of youtube's embed architecture to circumvent ads
 
 ## Quickstart
 ```bash
