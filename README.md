@@ -1,18 +1,28 @@
 # Ad Free Youtube
 <p align="center">
-<img width="75%" src="doc/demo.gif"/>
+<img width="75%" src="demo.gif"/>
 </p>
-This project is a proof of concept that explores the use of youtube's embed architecture to circumvent ads
+This project explores the use of youtube's embed architecture to circumvent ads
 
 ## Quickstart
-```
+```bash
+# Get this project
 git clone https://github.com/BarakBinyamin/addless-youtube.git
 cd addless-youtube
 npm install
+# Run the demo @ localhost:8000
 node index.js --port=8000
 ```
 
-## Also Ngrok
+## Avoid CORS policy blocks
+If you try to use your ip address instead of localhost you'll most likely have CORS issues  
+
+You can get an ssl encrytpted (https) tunnel to internet with the awesome tool [localhost.run](https://localhost.run/)
+```bash
+ssh -R 80:localhost:8000 nokey@localhost.run
+```
+
+## Or Ngrok
 Forward this service to the web using ngrok, and avoid CORS policy blocks
 1. [Make an ngrok account](https://ngrok.com/)
 2. Create an ssh key with the command `ssh-keygen`
