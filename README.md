@@ -15,12 +15,14 @@ node index.js --port=8000
 ```
 
 ## Avoid CORS policy blocks
-If you try to use your ip address instead of localhost you'll most likely have CORS issues  
+If you try to use your ip address instead of localhost you'll most likely have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 You can get an ssl encrytpted (https) tunnel to internet with the awesome tool [localhost.run](https://localhost.run/)
 ```bash
 ssh -R 80:localhost:8000 nokey@localhost.run
 ```
+
+CORS, cross origin resource sharing, is a set of browser policies meant to keep your data safe. One of these policies prevents requests to ssl secured (https) websites from a non secure website (http). Special acception for localhost becuase that's known to be your computer.
 
 ## Or Ngrok
 Forward this service to the web using ngrok, and avoid CORS policy blocks
