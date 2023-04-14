@@ -15,7 +15,7 @@ node index.js --port=8000
 ```
 
 ## Avoid CORS policy blocks
-If you try to use your ip address instead of localhost you'll most likely have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) issues
+If you navigate to your ip-address:port instead of localhost:port you'll most likely have [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) issues with the youtube iframe
 
 You can get an ssl encrytpted (https) tunnel to internet with the awesome tool [localhost.run](https://localhost.run/)
 ```bash
